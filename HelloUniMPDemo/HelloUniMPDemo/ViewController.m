@@ -27,17 +27,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
 
-       // Make a button to call the showFlutter function when pressed.
-       UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-       [button addTarget:self
-                  action:@selector(showFlutter)
-        forControlEvents:UIControlEventTouchUpInside];
-       [button setTitle:@"Show Flutter!" forState:UIControlStateNormal];
-       button.backgroundColor = UIColor.blueColor;
-       button.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
-       [self.view addSubview:button];
+    
+    [self showFlutter];
     
     [self checkUniMPResource];
     [self setUniMPMenuItems];
@@ -50,8 +42,39 @@
         ((AppDelegate *)UIApplication.sharedApplication.delegate).flutterEngine;
     FlutterViewController *flutterViewController =
         [[FlutterViewController alloc] initWithEngine:flutterEngine nibName:nil bundle:nil];
+    
+    ///
+    // flutter_and_native_101 是通信标识
+    FlutterMethodChannel* methodChannel = [FlutterMethodChannel
+                     methodChannelWithName:@"samples.flutter.dev/battery"
+                     binaryMessenger:flutterViewController.binaryMessenger];
+    //设置监听
+    [methodChannel setMethodCallHandler:^(FlutterMethodCall* call, FlutterResult result) {
+        // TODO
+        NSString *method=call.method;
+        if ([method isEqualToString:@"getBatteryLevel"]) {
+            
+            NSLog(@"flutter 调用到了 ios test");
+            // 获取配置信息
+            DCUniMPConfiguration *configuration = [self getUniMPConfiguration];
+            __weak __typeof(self)weakSelf = self;
+            // 打开小程序
+            [DCUniMPSDKEngine openUniMP:k_AppId configuration:configuration completed:^(DCUniMPInstance * _Nullable uniMPInstance, NSError * _Nullable error) {
+                if (uniMPInstance) {
+                    weakSelf.uniMPInstance = uniMPInstance;
+                } else {
+                    NSLog(@"打开小程序出错：%@",error);
+                }
+            }];
+            NSLog(@"flutter 调用到了 ios test 2222");
+            
+        }
+        
+    }];
+    
     [self presentViewController:flutterViewController animated:YES completion:nil];
 }
+
 
 
 /// 检查运行目录是否存在应用资源，不存在将应用资源部署到运行目录
@@ -103,7 +126,7 @@
 }
 
 /// 启动小程序
-- (IBAction)openUniMP:(id)sender {
+- (IBAction):(id)sender {
     
     // 获取配置信息
     DCUniMPConfiguration *configuration = [self getUniMPConfiguration];

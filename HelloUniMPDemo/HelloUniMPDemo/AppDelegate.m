@@ -16,7 +16,10 @@
 
 @end
 
-@implementation AppDelegate
+@implementation AppDelegate{
+    FlutterMethodChannel* methodChannel;
+}
+
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -34,12 +37,19 @@
     // 注册 component 注：component 的 Name 需要保证唯一， class：为 component 的类名
     [WXSDKEngine registerComponent:@"testmap" withClass:NSClassFromString(@"TestMapComponent")];
     
+    //FlutterMethodChannel 与 Flutter 之间的双向通信
+   
+
     
     self.flutterEngine = [[FlutterEngine alloc] initWithName:@"my flutter engine"];
       // Runs the default Dart entrypoint with a default Flutter route.
       [self.flutterEngine run];
       // Used to connect plugins (only if you have plugins with iOS platform code).
       [GeneratedPluginRegistrant registerWithRegistry:self.flutterEngine];
+    
+    //FlutterMethodChannel 与 Flutter 之间的双向通信
+     //   [self  methodChannelFunction];
+    
       return [super application:application didFinishLaunchingWithOptions:launchOptions];
 
 }
@@ -99,6 +109,17 @@
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
     // 收到本地推送消息
     [DCUniMPSDKEngine application:application didReceiveLocalNotification:notification];
+}
+
+
+-(void) methodChannelFunction{
+    FlutterViewController* controller = (FlutterViewController*)self.window.rootViewController;
+    
+    // flutter_and_native_101 是通信标识
+       methodChannel = [FlutterMethodChannel
+                        methodChannelWithName:@"samples.flutter.dev/battery"
+                        binaryMessenger:controller.binaryMessenger];
+    
 }
 
 @end
