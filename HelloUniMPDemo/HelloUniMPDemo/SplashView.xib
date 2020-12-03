@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SplashView">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unilogo" translatesAutoresizingMaskIntoConstraints="NO" id="l4Q-cm-Cgg">
+                    <rect key="frame" x="171" y="100" width="72" height="72"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="72" id="FBc-YK-Mup"/>
+                        <constraint firstAttribute="height" constant="72" id="bm6-b5-xeu"/>
+                    </constraints>
+                </imageView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="N88-qj-aU0">
+                    <rect key="frame" x="197" y="202" width="20" height="20"/>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="N88-qj-aU0" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="1kI-k3-3uP"/>
+                <constraint firstItem="l4Q-cm-Cgg" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="4k5-py-MLf"/>
+                <constraint firstItem="l4Q-cm-Cgg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="100" id="fg7-2Q-hD5"/>
+                <constraint firstItem="N88-qj-aU0" firstAttribute="top" secondItem="l4Q-cm-Cgg" secondAttribute="bottom" constant="30" id="m6Y-Qc-gRZ"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="107"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="unilogo" width="36" height="36"/>
+    </resources>
+</document>

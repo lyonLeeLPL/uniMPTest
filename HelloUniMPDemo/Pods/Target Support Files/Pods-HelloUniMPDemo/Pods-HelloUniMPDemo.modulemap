@@ -1,0 +1,6 @@
+framework module Pods_HelloUniMPDemo {
+  umbrella header "Pods-HelloUniMPDemo-umbrella.h"
+
+  export *
+  module * { export * }
+}
