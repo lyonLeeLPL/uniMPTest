@@ -9,6 +9,9 @@
 #import "ViewController.h"
 #import "DCUniMP.h"
 
+#import "AppDelegate.h"
+@import Flutter;
+
 
 //#define k_AppId @"__UNI__CBDCE04" // 演示扩展 Module 及 Component 等功能示例小程序，工程 GitHub 地址： https://github.com/dcloudio/UniMPExample
 #define k_AppId @"__UNI__11E9B73"
@@ -25,8 +28,29 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+
+       // Make a button to call the showFlutter function when pressed.
+       UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+       [button addTarget:self
+                  action:@selector(showFlutter)
+        forControlEvents:UIControlEventTouchUpInside];
+       [button setTitle:@"Show Flutter!" forState:UIControlStateNormal];
+       button.backgroundColor = UIColor.blueColor;
+       button.frame = CGRectMake(80.0, 210.0, 160.0, 40.0);
+       [self.view addSubview:button];
+    
     [self checkUniMPResource];
     [self setUniMPMenuItems];
+}
+
+///  flutter
+ 
+- (void)showFlutter {
+    FlutterEngine *flutterEngine =
+        ((AppDelegate *)UIApplication.sharedApplication.delegate).flutterEngine;
+    FlutterViewController *flutterViewController =
+        [[FlutterViewController alloc] initWithEngine:flutterEngine nibName:nil bundle:nil];
+    [self presentViewController:flutterViewController animated:YES completion:nil];
 }
 
 

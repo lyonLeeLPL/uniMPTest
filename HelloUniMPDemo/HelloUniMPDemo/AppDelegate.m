@@ -10,6 +10,8 @@
 #import "DCUniMP.h"
 #import "WeexSDK.h"
 
+#import <FlutterPluginRegistrant/GeneratedPluginRegistrant.h>
+
 @interface AppDelegate ()
 
 @end
@@ -32,7 +34,14 @@
     // 注册 component 注：component 的 Name 需要保证唯一， class：为 component 的类名
     [WXSDKEngine registerComponent:@"testmap" withClass:NSClassFromString(@"TestMapComponent")];
     
-    return YES;
+    
+    self.flutterEngine = [[FlutterEngine alloc] initWithName:@"my flutter engine"];
+      // Runs the default Dart entrypoint with a default Flutter route.
+      [self.flutterEngine run];
+      // Used to connect plugins (only if you have plugins with iOS platform code).
+      [GeneratedPluginRegistrant registerWithRegistry:self.flutterEngine];
+      return [super application:application didFinishLaunchingWithOptions:launchOptions];
+
 }
 
 #pragma mark - App 生命周期方法
