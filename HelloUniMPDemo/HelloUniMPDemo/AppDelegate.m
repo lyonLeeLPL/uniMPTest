@@ -50,6 +50,7 @@
     //FlutterMethodChannel 与 Flutter 之间的双向通信
      //   [self  methodChannelFunction];
     
+    
       return [super application:application didFinishLaunchingWithOptions:launchOptions];
 
 }

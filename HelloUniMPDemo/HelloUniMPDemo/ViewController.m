@@ -71,6 +71,8 @@
         }
         
     }];
+    //加上下面这句=0的代码，登录页就顶到最上面去了
+    flutterViewController.modalPresentationStyle = 0;
     
     [self presentViewController:flutterViewController animated:YES completion:nil];
 }
